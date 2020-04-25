@@ -70,7 +70,7 @@ class Authenticator(dns_common.DNSAuthenticator):
         self._get_Freenom_client().del_txt_record(domain, validation_name, validation)
 
     def _get_Freenom_client(self):
-        return  _FreenomDNSClient(self.credentials.conf('username', 'password'))
+        return  _FreenomDNSClient(self.credentials.conf('username'), self.credentials.conf('password'))
 
 class NoRecordError(Exception):
     pass
@@ -83,7 +83,7 @@ class _FreenomDNSClient(object):
     Encapsulates all communication with the Freenom API.
     """
 
-    def __init__(self, api_key):
+    def __init__(self, username, password):
         self.freenom = Freenom(username, password)
 
     def add_txt_record(self, domain, record_name, record_content, record_ttl):
