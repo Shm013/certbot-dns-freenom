@@ -38,11 +38,11 @@ class Authenticator(dns_common.DNSAuthenticator):
 
     description = ('Obtain certificates using a DNS TXT record (if you are using Freenom for '
                    'DNS).')
-    ttl = 120
 
     def __init__(self, *args, **kwargs):
         super(Authenticator, self).__init__(*args, **kwargs)
         self.credentials = None
+        self.ttl = 120
 
     @classmethod
     def add_parser_arguments(cls, add):  # pylint: disable=arguments-differ
