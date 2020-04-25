@@ -92,7 +92,7 @@ class _FreenomDNSClient(object):
         try:
             # Create resource records for domain
             #domain = self._find_domain_name(domain)
-            print("domain = {}".format(domain)
+            print("domain = {}".format(domain))
             #print("domain_name = {}".format(domain_name)
             #self.freenom.setRecord('bezruk.ml', record_name, 'TXT', record_content)
         except ApiException as e:
