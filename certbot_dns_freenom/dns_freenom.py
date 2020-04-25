@@ -67,7 +67,7 @@ class Authenticator(dns_common.DNSAuthenticator):
         self._get_Freenom_client().add_txt_record(domain, validation_name, validation, self.ttl)
 
     def _cleanup(self, domain, validation_name, validation):
-        self._get_Freenom_client().del_txt_record(domain, validation_name, validation)
+        self._get_Freenom_client().del_txt_record(domain, validation_name, validation, self.ttl)
 
     def _get_Freenom_client(self):
         return  _FreenomDNSClient(self.credentials.conf('username'), self.credentials.conf('password'))
@@ -95,11 +95,11 @@ class _FreenomDNSClient(object):
         except ApiException as e:
             print("Exception when calling RecordsApi->add_resource_record: %s\n" % e)
 
-    def del_txt_record(self, domain, record_name, record_content):
+    def del_txt_record(self, domain, record_name, record_content, record_ttl):
         pass
 
         try:
             # Delete a resource record
-            self.freenom.delRecord(domain, record_name)
+            self.freenom.delRecord(domain, record_name, 'TxT', record_content, record_ttl)
         except ApiException as e:
             print("Exception when calling RecordsApi->delete_resource_record: %s\n" % e)
