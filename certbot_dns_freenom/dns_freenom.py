@@ -91,7 +91,7 @@ class _FreenomDNSClient(object):
 
         try:
             # Create resource records for domain
-            self.freenom.setRecord(domain, record_name, 'TXT', record_content)
+            self.freenom.setRecord(domain, record_name, 'TXT', record_content, record_ttl)
         except ApiException as e:
             print("Exception when calling RecordsApi->add_resource_record: %s\n" % e)
 
