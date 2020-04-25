@@ -42,7 +42,7 @@ class Authenticator(dns_common.DNSAuthenticator):
     def __init__(self, *args, **kwargs):
         super(Authenticator, self).__init__(*args, **kwargs)
         self.credentials = None
-        self.ttl = 120
+        self.ttl = 300
 
     @classmethod
     def add_parser_arguments(cls, add):  # pylint: disable=arguments-differ
