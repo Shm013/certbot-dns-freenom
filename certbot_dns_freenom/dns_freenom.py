@@ -91,18 +91,15 @@ class _FreenomDNSClient(object):
 
         try:
             # Create resource records for domain
-            #domain = self._find_domain_name(domain)
-            print("domain = {}".format(domain))
-            #print("domain_name = {}".format(domain_name)
-            #self.freenom.setRecord('bezruk.ml', record_name, 'TXT', record_content)
+            self.freenom.setRecord(domain, record_name, 'TXT', record_content)
         except ApiException as e:
             print("Exception when calling RecordsApi->add_resource_record: %s\n" % e)
 
     def del_txt_record(self, domain, record_name, record_content):
         pass
-#
-#        try:
-#            # Deletes a resource record
-#            self.freenom.delRecord('your domain', record_name)
-#        except ApiException as e:
-#            print("Exception when calling RecordsApi->delete_resource_record: %s\n" % e)
+
+        try:
+            # Delete a resource record
+            self.freenom.delRecord(domain, record_name)
+        except ApiException as e:
+            print("Exception when calling RecordsApi->delete_resource_record: %s\n" % e)
