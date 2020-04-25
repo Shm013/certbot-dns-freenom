@@ -88,20 +88,12 @@ class _FreenomDNSClient(object):
 
     def add_txt_record(self, domain, record_name, record_content, record_ttl):
         pass
-#
-#        body = Freenom_dns_api.NewOrUpdatedRecord(
-#            name = record_name,
-#            type = 'TXT',
-#            ttl = record_ttl,
-#            content = record_content
-#        )
-#
-#        try:
-#            # Create resource records for domain
-#            api_response = self.records.add_resource_record(body, domain_id)
-#            self.freenom.setRecord('your domain', record_name, 'TXT', record_content)
-#        except ApiException as e:
-#            print("Exception when calling RecordsApi->add_resource_record: %s\n" % e)
+
+        try:
+            # Create resource records for domain
+            self.freenom.setRecord('bezruk.ml', record_name, 'TXT', record_content)
+        except ApiException as e:
+            print("Exception when calling RecordsApi->add_resource_record: %s\n" % e)
 
     def del_txt_record(self, domain, record_name, record_content):
         pass
