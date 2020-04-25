@@ -87,26 +87,27 @@ class _FreenomDNSClient(object):
         self.freenom = Freenom(username, password)
 
     def add_txt_record(self, domain, record_name, record_content, record_ttl):
-
-        body = Freenom_dns_api.NewOrUpdatedRecord(
-            name = record_name,
-            type = 'TXT',
-            ttl = record_ttl,
-            content = record_content
-        )
-
-        try:
-            # Create resource records for domain
-            api_response = self.records.add_resource_record(body, domain_id)
-            self.freenom.setRecord('your domain', record_name, 'TXT', record_content)
-        except ApiException as e:
-            print("Exception when calling RecordsApi->add_resource_record: %s\n" % e)
+        pass
+#
+#        body = Freenom_dns_api.NewOrUpdatedRecord(
+#            name = record_name,
+#            type = 'TXT',
+#            ttl = record_ttl,
+#            content = record_content
+#        )
+#
+#        try:
+#            # Create resource records for domain
+#            api_response = self.records.add_resource_record(body, domain_id)
+#            self.freenom.setRecord('your domain', record_name, 'TXT', record_content)
+#        except ApiException as e:
+#            print("Exception when calling RecordsApi->add_resource_record: %s\n" % e)
 
     def del_txt_record(self, domain, record_name, record_content):
-
-        try:
-            # Deletes a resource record
-            self.freenom.delRecord('your domain', record_name)
-        except ApiException as e:
-            print("Exception when calling RecordsApi->delete_resource_record: %s\n" % e)
-
+        pass
+#
+#        try:
+#            # Deletes a resource record
+#            self.freenom.delRecord('your domain', record_name)
+#        except ApiException as e:
+#            print("Exception when calling RecordsApi->delete_resource_record: %s\n" % e)
