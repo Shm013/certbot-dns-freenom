@@ -100,6 +100,6 @@ class _FreenomDNSClient(object):
 
         try:
             # Delete a resource record
-            self.freenom.delRecord(domain, record_name, 'TxT', record_content, record_ttl)
+            self.freenom.delRecord(domain, record_name, 'TXT', record_content, record_ttl)
         except ApiException as e:
             print("Exception when calling RecordsApi->delete_resource_record: %s\n" % e)
