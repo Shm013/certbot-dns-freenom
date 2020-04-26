@@ -25,7 +25,6 @@ chmod 600 /path/to/credentials.ini
 certbot certonly -a certbot-dns-freenom:dns-freenom \
   --certbot-dns-freenom:dns-freenom-credentials /path/to/credentials.ini \
   --certbot-dns-freenom:dns-freenom-propagation-seconds 300 \
-  -d example.com \
   -d "*.example.com" \
   -m admin@example.com \
   --agree-tos -n
