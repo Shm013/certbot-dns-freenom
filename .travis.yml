@@ -16,5 +16,3 @@ jobs:
         provider: pypi
         user: "__token__"
         password: "$SECRET_TOKEN"
-        on:
-          condition: $TRAVIS_TAG =~ ^v\d+\.\d+.\d+
