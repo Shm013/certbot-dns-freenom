@@ -5,13 +5,16 @@ stages:
   - test
   - name: deploy
     if: branch = master
-install:
-  - pip install --upgrade pip
-  - pip install .
-  - pip install setuptools wheel pylint
-script:
-  - pylint certbot_dns_freenom
-deploy:
-  provider: pypi
-  user: "__token__"
-  password: "$SECRET_TOKEN"
+jobs:
+  include:
+    - install:
+      - pip install --upgrade pip
+      - pip install .
+      - pip install setuptools wheel pylint
+    - script: pylint certbot_dns_freenom
+    - stage: deploy
+      script: skip
+      deploy:
+        provider: pypi
+        user: "__token__"
+        password: "$SECRET_TOKEN"
