@@ -1,6 +1,6 @@
-python:
-  - "3.6"
+language: python
+  - "3.7"
 install:
-  pylint
+  - pip install pylint
 script:
-  pylint certbot_dns_freenom
+  - pylint certbot_dns_freenom
