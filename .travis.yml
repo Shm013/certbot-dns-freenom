@@ -2,28 +2,17 @@ language: python
   - 3.6
   - 3.7
 stages:
-  - install
   - test
-  - name: build
-    if: branch = master
   - name: deploy
     if: branch = master
-jobs:
-  include:
-    - stage: install
-      install:
-        - pip install --upgrade pip
-        - pip install .
-        - pip install setuptools wheel
-      script: skip
-    - stage: test
-      install: pip install pylint
-      script: pylint certbot_dns_freenom
-          #    - language: python
-          #      python: 3.6
-          #        - stage: build
-          #          script: python3 setup.py sdist bdist_wheel
-          #    - language: python
-          #      python: 3.6
-          #        - stage: deploy
-          #          script: echo "deploy only in python 3.6"
+install:
+  - pip install --upgrade pip
+  - pip install .
+  - pip install setuptools wheel pylint
+script:
+  - pylint certbot_dns_freenom
+  - echo "$SECRET_KEY"
+deploy:
+  provider: pypi
+  user: "__token__"
+  password: "Your PyPI API token, including the pypi- prefix"
