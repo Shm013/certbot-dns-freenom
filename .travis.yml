@@ -15,16 +15,16 @@ jobs:
         - pip install --upgrade pip
         - pip install .
         - pip install setuptools wheel
-    - stage: test
-      install:
-        - pip install pylint
-      script:
-        - pylint certbot_dns_freenom
-    - language: python
-      python: 3.6
-        - stage: build
-          script: python3 setup.py sdist bdist_wheel
-    - language: python
-      python: 3.6
-        - stage: deploy
-          script: echo "deploy only in python 3.6"
+          #    - stage: test
+          #      install:
+          #        - pip install pylint
+          #      script:
+          #        - pylint certbot_dns_freenom
+          #    - language: python
+          #      python: 3.6
+          #        - stage: build
+          #          script: python3 setup.py sdist bdist_wheel
+          #    - language: python
+          #      python: 3.6
+          #        - stage: deploy
+          #          script: echo "deploy only in python 3.6"
