@@ -1,2 +1,6 @@
+python:
+  - "3.6"
+install:
+  pylint
 script:
-  echo kek
+  pylint certbot_dns_freenom
