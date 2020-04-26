@@ -11,8 +11,7 @@ install:
   - pip install setuptools wheel pylint
 script:
   - pylint certbot_dns_freenom
-  - echo "$SECRET_KEY"
 deploy:
   provider: pypi
   user: "__token__"
-  password: "Your PyPI API token, including the pypi- prefix"
+  password: "$SECRET_TOKEN"
