@@ -1,6 +1,7 @@
 language: python
   - "3.7"
 install:
+  - pip install .
   - pip install pylint
 script:
   - pylint certbot_dns_freenom
