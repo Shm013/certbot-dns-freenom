@@ -13,17 +13,12 @@
 #   limitations under the License.
 
 """DNS Authenticator for Freenom DNS."""
-import logging
-
 from freenom import Freenom
 
 import zope.interface
 
-from certbot import errors
 from certbot import interfaces
 from certbot.plugins import dns_common
-
-logger = logging.getLogger(__name__)
 
 ACCOUNT_KEYS_URL = 'https://my.Freenom.ru/profile/apikeys'
 
@@ -64,21 +59,18 @@ class Authenticator(dns_common.DNSAuthenticator):
         )
 
     def _perform(self, domain, validation_name, validation):
-        self._get_Freenom_client().add_txt_record(domain, validation_name, validation, self.ttl)
+        self._get_freenom_client().add_txt_record(domain, validation_name, validation, self.ttl)
 
     def _cleanup(self, domain, validation_name, validation):
-        self._get_Freenom_client().del_txt_record(domain, validation_name, validation, self.ttl)
+        self._get_freenom_client().del_txt_record(domain, validation_name, validation, self.ttl)
 
-    def _get_Freenom_client(self):
-        return  _FreenomDNSClient(self.credentials.conf('username'), self.credentials.conf('password'))
+    def _get_freenom_client(self):
+        return  _FreenomDNSClient(
+            self.credentials.conf('username'),
+            self.credentials.conf('password')
+        )
 
-class NoRecordError(Exception):
-    pass
-
-class NoDomainZoneError(Exception):
-    pass
-
-class _FreenomDNSClient(object):
+class _FreenomDNSClient():
     """
     Encapsulates all communication with the Freenom API.
     """
@@ -87,19 +79,9 @@ class _FreenomDNSClient(object):
         self.freenom = Freenom(username, password)
 
     def add_txt_record(self, domain, record_name, record_content, record_ttl):
-        pass
-
-        try:
-            # Create resource records for domain
-            self.freenom.setRecord(domain, record_name, 'TXT', record_content, record_ttl)
-        except ApiException as e:
-            print("Exception when calling RecordsApi->add_resource_record: %s\n" % e)
+        """ Add txt record """
+        self.freenom.setRecord(domain, record_name, 'TXT', record_content, record_ttl)
 
     def del_txt_record(self, domain, record_name, record_content, record_ttl):
-        pass
-
-        try:
-            # Delete a resource record
-            self.freenom.delRecord(domain, record_name, 'TXT', record_content, record_ttl)
-        except ApiException as e:
-            print("Exception when calling RecordsApi->delete_resource_record: %s\n" % e)
+        """ Delete txt record """
+        self.freenom.delRecord(domain, record_name, 'TXT', record_content, record_ttl)
