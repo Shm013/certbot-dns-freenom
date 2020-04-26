@@ -16,5 +16,5 @@ jobs:
         provider: pypi
         user: "__token__"
         password: "$SECRET_TOKEN"
-      on:
-        tags: true
+        on:
+          tags: true
