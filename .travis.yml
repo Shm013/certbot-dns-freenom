@@ -5,10 +5,7 @@ stages:
     if: branch = master
 jobs:
   include:
-    - python:
-        - 3.6
-        - 3.7
-      install:
+    - install:
       - pip install --upgrade pip
       - pip install .
       - pip install setuptools wheel pylint
