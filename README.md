@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/Shm013/certbot-dns-freenom.svg?branch=master)](https://travis-ci.com/Shm013/certbot-dns-freenom)
+
 freenom DNS Authenticator plugin for Certbot
 ==============================================
 A certbot dns plugin to obtain certificates using Freenom DNS.
