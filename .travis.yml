@@ -15,11 +15,11 @@ jobs:
         - pip install --upgrade pip
         - pip install .
         - pip install setuptools wheel
-          #    - stage: test
-          #      install:
-          #        - pip install pylint
-          #      script:
-          #        - pylint certbot_dns_freenom
+    - stage: test
+      install:
+        - pip install pylint
+      script:
+        - pylint certbot_dns_freenom
           #    - language: python
           #      python: 3.6
           #        - stage: build
