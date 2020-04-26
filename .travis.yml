@@ -11,7 +11,7 @@ jobs:
       - pip install --upgrade pip
       - pip install .
       - pip install setuptools wheel pylint
-    - script: pylint certbot_dns_freenom
+      script: pylint certbot_dns_freenom
     - stage: deploy
       script: skip
       deploy:
