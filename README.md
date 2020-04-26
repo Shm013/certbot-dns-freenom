@@ -30,7 +30,7 @@ certbot certonly -a certbot-dns-freenom:dns-freenom \
   --agree-tos -n
 ```
 
-It take up to 30 minutes minut to update dns record.
+It take up to 30 minutes to update dns record.
 You can rise parameter `certbot-dns-freenom:dns-freenom-propagation-seconds` if cause any trouble such as
 ```
 IMPORTANT NOTES:

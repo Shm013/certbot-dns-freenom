@@ -18,5 +18,3 @@ jobs:
         password: "$SECRET_TOKEN"
         on:
           tags: true
-    on:
-      tags: true
