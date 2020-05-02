@@ -1,8 +1,8 @@
 language: python
 stages:
   - test
-  - name: deploy
-    if: branch = master
+#  - name: deploy
+#    if: branch = master
 jobs:
   include:
     - install:
