@@ -13,6 +13,6 @@ jobs:
     - stage: deploy
       script: skip
       deploy:
-        provider: pypi
-        user: "__token__"
-        password: "$SECRET_TOKEN"
+        - provider: pypi
+          user: "__token__"
+          password: "$SECRET_TOKEN"
