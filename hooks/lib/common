@@ -67,6 +67,14 @@ BuildDockerPluginImage() {
     PLUGIN_VERSION=$4
 
     QEMU=$(GetQemuArch "$ARCH")
+    echo "CERTBOT_VERSION=${CERTBOT_VERSION}"
+    echo "TARGET_ARCH=${ARCH}"
+    echo "QEMU_ARCH=${QEMU}"
+    echo "PLUGIN_NAME=${PLUGIN}"
+    echo "PLUGIN_VERSION=${PLUGIN_VERSION}"
+    echo "DOCKERFILE_PATH=${DOCKERFILE_PATH}"
+    echo "DOCKER_REPO=${DOCKER_REPO}"
+
     docker build \
         --build-arg CERTBOT_VERSION="${CERTBOT_VERSION}" \
         --build-arg TARGET_ARCH="${ARCH}" \
@@ -74,7 +82,7 @@ BuildDockerPluginImage() {
         --build-arg PLUGIN_NAME="${PLUGIN}" \
         --build-arg PLUGIN_VERSION="${PLUGIN_VERSION}" \
         -f "${DOCKERFILE_PATH}" \
-        -t "${DOCKER_REPO}:${ARCH}-v${VERSION}" \
+        -t "${DOCKER_REPO}:${ARCH}-v${PLUGIN_VERSION}" \
         .
 }
 
