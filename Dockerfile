@@ -1,10 +1,10 @@
 # Docker Arch (amd64, arm32v6, ...)
 ARG TARGET_ARCH
 ARG CERTBOT_VERSION
-ARG PLUGIN_VERSION
 FROM certbot/certbot:${TARGET_ARCH}-v${CERTBOT_VERSION}
 
 ARG PLUGIN_NAME
+ARG PLUGIN_VERSION
 
 RUN echo ${PLUGIN_NAME}-${PLUGIN_VERSION}.tar.gz https://github.com/shm013/${PLUGIN_NAME}/archive/v${PLUGIN_VERSION}.tar.gz
 
