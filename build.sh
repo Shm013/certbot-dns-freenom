@@ -34,6 +34,7 @@ Build() {
 WORK_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 
 CERTBOT_VERSION="$1"
+PLUGIN_VERSION="$2"
 
 Build "shm013/certbot-dns-freenom" "$CERTBOT_VERSION" "$WORK_DIR"
 
