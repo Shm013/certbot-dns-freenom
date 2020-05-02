@@ -6,7 +6,7 @@ FROM certbot/certbot:${TARGET_ARCH}-v${CERTBOT_VERSION}
 ARG PLUGIN_NAME
 ARG PLUGIN_VERSION
 
-RUN apk add --update --no-cache g++ gcc libxml2 libxslt
+RUN apk add --update --no-cache g++ gcc libxml2-dev libxslt-dev
 
 # Retrieve Certbot DNS plugin code
 RUN wget -O ${PLUGIN_NAME}-${PLUGIN_VERSION}.tar.gz https://github.com/shm013/${PLUGIN_NAME}/archive/v${PLUGIN_VERSION}.tar.gz \
