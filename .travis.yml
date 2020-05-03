@@ -12,6 +12,7 @@ stages:
 jobs:
   include:
     - install:
+      - env
       - pip install --upgrade pip
       - pip install .
       - pip install setuptools wheel pylint
