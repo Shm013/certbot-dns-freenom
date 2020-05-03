@@ -19,10 +19,12 @@ jobs:
     - stage: build_docker
       script:
         - bash build.sh '1.3.0' '1.3.3'
-        - docker images ls
+        - docker images
     - stage: deploy
       script: skip
       deploy:
+        - provider: script
+          script: bash docker_push
         - provider: pypi
           user: "__token__"
           password: "$SECRET_TOKEN"
