@@ -2,8 +2,7 @@
 set -ex
 
 # Current supported architectures
-#export ALL_TARGET_ARCH=(amd64 arm32v6 arm64v8)
-export ALL_TARGET_ARCH=(amd64)
+export ALL_TARGET_ARCH=(amd64 arm32v6 arm64v8)
 
 # Architecture used in tags with no architecture especified (certbot/certbot:latest, certbot/cerbot:v0.35.0, ...)
 export DEFAULT_ARCH=amd64
