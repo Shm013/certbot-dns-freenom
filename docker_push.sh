@@ -9,7 +9,7 @@ Login() {
 Push() {
     DOCKER_REPO="$1"
     PLUGIN_VERSION="$2"
-    bash hooks/push
+    DOCKER_REPO=$DOCKER_REPO PLUGIN_VERSION=$PLUGIN_VERSION bash hooks/push
     #bash hooks/post_push
 }
 
