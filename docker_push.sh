@@ -15,8 +15,7 @@ Push() {
 
 WORK_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 
-CERTBOT_VERSION="$1"
-PLUGIN_VERSION="$2"
+PLUGIN_VERSION="$1"
 
 Login
-Push "shm013/certbot-dns-freenom" "$CERTBOT_VERSION" "$PLUGIN_VERSION"
+Push "shm013/certbot-dns-freenom" "$PLUGIN_VERSION"
