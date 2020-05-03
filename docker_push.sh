@@ -10,7 +10,7 @@ Push() {
     DOCKER_REPO="$1"
     PLUGIN_VERSION="$2"
     DOCKER_REPO=$DOCKER_REPO PLUGIN_VERSION=$PLUGIN_VERSION bash hooks/push
-    #bash hooks/post_push
+    DOCKER_REPO=$DOCKER_REPO PLUGIN_VERSION=$PLUGIN_VERSION bash hooks/post_push
 }
 
 WORK_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
