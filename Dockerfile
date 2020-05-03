@@ -19,4 +19,4 @@ RUN wget -O ${PLUGIN_NAME}-${PLUGIN_VERSION}.tar.gz https://github.com/shm013/${
 RUN pip install --constraint /opt/certbot/docker_constraints.txt --no-cache-dir --editable /opt/certbot/src/${PLUGIN_NAME}
 
 # Cleanup
-RUN apk del g++ gcc libxml2-dev libxslt-dev && apk cache clean
+RUN apk del g++ gcc libxml2-dev libxslt-dev
