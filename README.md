@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/Shm013/certbot-dns-freenom.svg?branch=master)](https://travis-ci.com/Shm013/certbot-dns-freenom)
+[![PyPI version](https://badge.fury.io/py/certbot-dns-freenom.svg)](https://badge.fury.io/py/certbot-dns-freenom)
 
 freenom DNS Authenticator plugin for Certbot
 ==============================================
