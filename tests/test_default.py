@@ -15,7 +15,18 @@ def test_perform():
     password = os.environ["FREENOM_PASSWORD"]
     domain = os.environ["FREENOM_DOMAIN"]
 
-    print(domain)
+    record_target = "eaa7c9c1ca414552b504d1d6ddcd7715775ed507f8f136391c37846206b7df4d"
+    record_name = "_TEST_CERTBOT"
+
+    test_record = "{}.{}".format(record_name, domain)
 
     authenticator = certbot_dns_freenom._FreenomDNSClient(username, password)
-    authenticator.add_txt_record(domain, "_TEST", "_TARGET", 300)
+
+    # Empty record
+    authenticator.del_txt_record(domain, record_name, record_target, 300)
+
+    print(os.popen("nslookup -type=TXT {}".format(test_record)).read())
+
+
+    # Add new record
+    #authenticator.add_txt_record(domain, "_TEST_CERTBOT", target, 300)
