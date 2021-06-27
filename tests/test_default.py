@@ -36,6 +36,3 @@ def test_FreenomDNSClient():
 
     # Clenup
     authenticator.del_txt_record(domain, record_name, record_target, 300)
-    time.sleep(30)
-    nslookup_output = os.popen("nslookup -type=TXT {}".format(test_record)).read()
-    assert not record_target in nslookup_output
