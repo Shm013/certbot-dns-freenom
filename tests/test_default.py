@@ -16,7 +16,9 @@ def test_FreenomDNSClient():
     password = os.environ["FREENOM_PASSWORD"]
     domain = os.environ["FREENOM_DOMAIN"]
 
+    # Some random target
     record_target = "eaa7c9c1ca414552b504d1d6ddcd7715775ed507f8f136391c37846206b7df4d"
+    # Freenom DNS Server
     freenom_dns = "80.80.80.80"
 
     # Generate unique record
@@ -34,7 +36,7 @@ def test_FreenomDNSClient():
 
     # Add new record
     authenticator.add_txt_record(domain, record_name, record_target, 300)
-    time.sleep(600)
+    time.sleep(600)  # Timeout 10 minuts
     nslookup_output = os.popen(
         "nslookup -type=TXT {} - {}".format(test_record, freenom_dns)
     ).read()
@@ -42,8 +44,3 @@ def test_FreenomDNSClient():
 
     # Clenup
     authenticator.del_txt_record(domain, record_name, record_target, 300)
-    time.sleep(600)
-    nslookup_output = os.popen(
-        "nslookup -type=TXT {} - {}".format(test_record, freenom_dns)
-    ).read()
-    assert not record_target in nslookup_output
