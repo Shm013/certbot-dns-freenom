@@ -37,4 +37,4 @@ def test_FreenomDNSClient():
     assert record_target in nslookup_output
 
     # Clenup
-    #authenticator.del_txt_record(domain, record_name, record_target, 300)
+    # authenticator.del_txt_record(domain, record_name, record_target, 300)
