@@ -27,6 +27,5 @@ def test_perform():
 
     print(os.popen("nslookup -type=TXT {}".format(test_record)).read())
 
-
     # Add new record
-    #authenticator.add_txt_record(domain, "_TEST_CERTBOT", target, 300)
+    # authenticator.add_txt_record(domain, "_TEST_CERTBOT", target, 300)
