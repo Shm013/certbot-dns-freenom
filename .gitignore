@@ -57,3 +57,6 @@ tests/letstest/venv/
 bin/
 include/
 pip-selfcheck.json
+.freenomdata
+freenom_data
+cookies_data

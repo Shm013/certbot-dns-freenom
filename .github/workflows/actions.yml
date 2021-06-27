@@ -28,5 +28,9 @@ jobs:
         run: |
           black --check .
       - name: Test with pytest
+        env:
+          FREENOM_USERNAME: ${{ secrets.FREENOM_USERNAME }}
+          FREENOM_PASSWORD: ${{ secrets.FREENOM_PASSWORD }}
+          FREENOM_DOMAIN: ${{ secrets.FREENOM_DOMAIN }}
         run: |
-          pytest
+          pytest -rP

@@ -13,9 +13,7 @@
 #   limitations under the License.
 
 """DNS Authenticator for Freenom DNS."""
-from freenom import Freenom
-
-import zope.interface
+from freenom_dns import Freenom
 
 from certbot import interfaces
 from certbot.plugins import dns_common
@@ -23,8 +21,6 @@ from certbot.plugins import dns_common
 ACCOUNT_KEYS_URL = "https://my.Freenom.ru/profile/apikeys"
 
 
-@zope.interface.implementer(interfaces.IAuthenticator)
-@zope.interface.provider(interfaces.IPluginFactory)
 class Authenticator(dns_common.DNSAuthenticator):
     """DNS Authenticator for Freenom DNS
 
