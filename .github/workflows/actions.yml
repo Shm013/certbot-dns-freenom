@@ -26,11 +26,10 @@ jobs:
       - name: Install certbot_dns_freenom
         run: |
           pip install .
-      - name: Create credentials.ini
+      - name: Prepare
         run: |
           echo "certbot_dns_freenom:dns_freenom_username = ${{ secrets.FREENOM_USERNAME }}\n
-          certbot_dns_freenom:dns_freenom_password = ${{ secrets.FREENOM_PASSWORD }}"
-          > credentials.ini
+          certbot_dns_freenom:dns_freenom_password = ${{ secrets.FREENOM_PASSWORD }}" > credentials.ini
       - name: Test
         run: |
           certbot certonly -a certbot-dns-freenom:dns-freenom \
@@ -40,5 +39,6 @@ jobs:
             -d certbot-dns-freenom-test.ml \
             -m admin@example.com \
             --server https://acme-staging-v02.api.letsencrypt.org/directory \
-            --logs-dir /tmp \
+            --logs-dir /tmp/ \
+            --config-dir /tmp/ \
             --agree-tos -n
