@@ -7,7 +7,7 @@ sys.path.append(str(pathlib.Path().absolute()))
 import certbot_dns_freenom.dns_freenom as certbot_dns_freenom
 
 
-def test_perform():
+def test_FreenomDNSClient():
     assert os.environ["FREENOM_USERNAME"]
     assert os.environ["FREENOM_PASSWORD"]
     assert os.environ["FREENOM_DOMAIN"]
@@ -25,25 +25,17 @@ def test_perform():
 
     # Empty record
     authenticator.del_txt_record(domain, record_name, record_target, 300)
-
     nslookup_output = os.popen("nslookup -type=TXT {}".format(test_record)).read()
-    print(nslookup_output)
-
     assert not record_target in nslookup_output
 
     # Add new record
     authenticator.add_txt_record(domain, record_name, record_target, 300)
     time.sleep(30)
-
     nslookup_output = os.popen("nslookup -type=TXT {}".format(test_record)).read()
-    print(nslookup_output)
-
     assert record_target in nslookup_output
 
     # Clenup
-    # authenticator.del_txt_record(domain, record_name, record_target, 300)
-
-    # nslookup_output = os.popen("nslookup -type=TXT {}".format(test_record)).read()
-    # print(nslookup_output)
-
-    # assert not record_target in nslookup_output
+    authenticator.del_txt_record(domain, record_name, record_target, 300)
+    time.sleep(30)
+    nslookup_output = os.popen("nslookup -type=TXT {}".format(test_record)).read()
+    assert not record_target in nslookup_output
