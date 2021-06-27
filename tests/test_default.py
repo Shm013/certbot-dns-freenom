@@ -1,5 +1,6 @@
 import sys
 import pathlib
+import time
 import os
 
 sys.path.append(str(pathlib.Path().absolute()))
@@ -23,7 +24,7 @@ def test_perform():
     authenticator = certbot_dns_freenom._FreenomDNSClient(username, password)
 
     # Empty record
-    authenticator.del_txt_record(domain, record_name, record_target, 300)
+    authenticator.del_txt_record(domain, record_name, record_target, 30)
 
     nslookup_output = os.popen("nslookup -type=TXT {}".format(test_record)).read()
     print(nslookup_output)
@@ -31,7 +32,8 @@ def test_perform():
     assert not record_target in nslookup_output
 
     # Add new record
-    authenticator.add_txt_record(domain, record_name, record_target, 300)
+    authenticator.add_txt_record(domain, record_name, record_target, 30)
+    time.sleep(30)
 
     nslookup_output = os.popen("nslookup -type=TXT {}".format(test_record)).read()
     print(nslookup_output)
