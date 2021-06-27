@@ -30,7 +30,7 @@ def test_FreenomDNSClient():
 
     # Add new record
     authenticator.add_txt_record(domain, record_name, record_target, 300)
-    time.sleep(310)
+    time.sleep(60)
     nslookup_output = os.popen(
         "nslookup -type=TXT {} - {}".format(test_record, freenom_dns)
     ).read()
@@ -38,3 +38,8 @@ def test_FreenomDNSClient():
 
     # Clenup
     authenticator.del_txt_record(domain, record_name, record_target, 300)
+    time.sleep(310)
+    nslookup_output = os.popen(
+        "nslookup -type=TXT {} - {}".format(test_record, freenom_dns)
+    ).read()
+    assert not record_target in nslookup_output
