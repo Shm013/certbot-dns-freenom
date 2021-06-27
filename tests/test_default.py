@@ -19,6 +19,8 @@ def test_FreenomDNSClient():
     record_target = "eaa7c9c1ca414552b504d1d6ddcd7715775ed507f8f136391c37846206b7df4d"
     record_name = "_TEST_CERTBOT"
 
+    freenom_dns = "80.80.80.80"
+
     test_record = "{}.{}".format(record_name, domain)
 
     authenticator = certbot_dns_freenom._FreenomDNSClient(username, password)
@@ -29,7 +31,9 @@ def test_FreenomDNSClient():
     # Add new record
     authenticator.add_txt_record(domain, record_name, record_target, 300)
     time.sleep(30)
-    nslookup_output = os.popen("nslookup -type=TXT {}".format(test_record)).read()
+    nslookup_output = os.popen(
+        "nslookup -type=TXT {} - {}".format(test_record, freenom_dns)
+    ).read()
     assert record_target in nslookup_output
 
     # Clenup
