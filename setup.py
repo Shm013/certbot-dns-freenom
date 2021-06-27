@@ -19,7 +19,7 @@ from setuptools import find_packages
 version = "1.3.3"
 
 install_requires = [
-    "certbot>=1.3.0",
+    "certbot==1.3.0",
     "freenom>=0.0.2",
 ]
 
