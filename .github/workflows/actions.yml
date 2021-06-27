@@ -33,11 +33,12 @@ jobs:
           > credentials.ini
       - name: Test
         run: |
-          certbot certonly -a certbot-dns-freenom:dns-freenom
-            --certbot-dns-freenom:dns-freenom-credentials ${PWD}/credentials.ini
-            --certbot-dns-freenom:dns-freenom-propagation-seconds 300
-            -d "*.certbot-dns-freenom-test.ml"
-            -d certbot-dns-freenom-test.ml
-            -m admin@example.com
-            --server https://acme-staging-v02.api.letsencrypt.org/directory
+          certbot certonly -a certbot-dns-freenom:dns-freenom \
+            --certbot-dns-freenom:dns-freenom-credentials ${PWD}/credentials.ini \
+            --certbot-dns-freenom:dns-freenom-propagation-seconds 300 \
+            -d "*.certbot-dns-freenom-test.ml" \
+            -d certbot-dns-freenom-test.ml \
+            -m admin@example.com \
+            --server https://acme-staging-v02.api.letsencrypt.org/directory \
+            --logs-dir /tmp \
             --agree-tos -n
