@@ -21,8 +21,6 @@ version = "1.3.3"
 install_requires = [
     "certbot>=1.3.0",
     "freenom>=0.0.2",
-    "setuptools",
-    "zope.interface",
 ]
 
 setup(
