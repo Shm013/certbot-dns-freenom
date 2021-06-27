@@ -16,63 +16,62 @@ from setuptools import setup
 from setuptools import find_packages
 
 
-version = '1.3.3'
+version = "1.3.3"
 
 # Remember to update local-oldest-requirements.txt when changing the minimum
 # acme/certbot version.
 install_requires = [
-    'certbot>=1.3.0',
-    'freenom',
-    'setuptools',
-    'zope.interface',
+    "certbot>=1.3.0",
+    "freenom",
+    "setuptools",
+    "zope.interface",
 ]
 
 docs_extras = [
-    'Sphinx>=1.0',  # autodoc_member_order = 'bysource', autodoc_default_flags
-    'sphinx_rtd_theme',
+    "Sphinx>=1.0",  # autodoc_member_order = 'bysource', autodoc_default_flags
+    "sphinx_rtd_theme",
 ]
 
 setup(
-    name='certbot-dns-freenom',
+    name="certbot-dns-freenom",
     version=version,
-    description='freenom DNS Authenticator plugin for Certbot',
-    url='https://github.com/Shm013/certbot-dns-freenom',
-    author='Nikolay Shamanovich',
-    author_email='shm013@yandex.ru',
-    license='Apache License 2.0',
-    python_requires='!=2.*, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*',
+    description="freenom DNS Authenticator plugin for Certbot",
+    url="https://github.com/Shm013/certbot-dns-freenom",
+    author="Nikolay Shamanovich",
+    author_email="shm013@yandex.ru",
+    license="Apache License 2.0",
+    python_requires="!=2.*, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*",
     classifiers=[
-        'Development Status :: 3 - Alpha',
-        'Environment :: Plugins',
-        'Intended Audience :: System Administrators',
-        'License :: OSI Approved :: Apache Software License',
-        'Operating System :: POSIX :: Linux',
-        'Programming Language :: Python',
-        'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.4',
-        'Programming Language :: Python :: 3.5',
-        'Programming Language :: Python :: 3.6',
-        'Programming Language :: Python :: 3.7',
-        'Programming Language :: Python :: 3.8',
-        'Programming Language :: Python :: 3.9',
-        'Topic :: Internet :: WWW/HTTP',
-        'Topic :: Security',
-        'Topic :: System :: Installation/Setup',
-        'Topic :: System :: Networking',
-        'Topic :: System :: Systems Administration',
-        'Topic :: Utilities',
+        "Development Status :: 3 - Alpha",
+        "Environment :: Plugins",
+        "Intended Audience :: System Administrators",
+        "License :: OSI Approved :: Apache Software License",
+        "Operating System :: POSIX :: Linux",
+        "Programming Language :: Python",
+        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.4",
+        "Programming Language :: Python :: 3.5",
+        "Programming Language :: Python :: 3.6",
+        "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
+        "Topic :: Internet :: WWW/HTTP",
+        "Topic :: Security",
+        "Topic :: System :: Installation/Setup",
+        "Topic :: System :: Networking",
+        "Topic :: System :: Systems Administration",
+        "Topic :: Utilities",
     ],
-
     packages=find_packages(),
     include_package_data=True,
     install_requires=install_requires,
     extras_require={
-        'docs': docs_extras,
+        "docs": docs_extras,
     },
     entry_points={
-        'certbot.plugins': [
-            'dns-freenom = certbot_dns_freenom.dns_freenom:Authenticator',
+        "certbot.plugins": [
+            "dns-freenom = certbot_dns_freenom.dns_freenom:Authenticator",
         ],
     },
-    test_suite='certbot_dns_freenom',
+    test_suite="certbot_dns_freenom",
 )
