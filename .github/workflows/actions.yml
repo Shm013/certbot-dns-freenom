@@ -29,5 +29,6 @@ jobs:
           FREENOM_USERNAME: ${{ secrets.FREENOM_USERNAME }}
           FREENOM_PASSWORD: ${{ secrets.FREENOM_PASSWORD }}
           FREENOM_DOMAIN: ${{ secrets.FREENOM_DOMAIN }}
+          RECORD_ID: ${{ github.run_id }}
         run: |
           pytest -rP
