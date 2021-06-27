@@ -39,9 +39,9 @@ def test_perform():
     assert record_target in nslookup_output
 
     # Clenup
-    #authenticator.del_txt_record(domain, record_name, record_target, 300)
+    # authenticator.del_txt_record(domain, record_name, record_target, 300)
 
-    #nslookup_output = os.popen("nslookup -type=TXT {}".format(test_record)).read()
-    #print(nslookup_output)
+    # nslookup_output = os.popen("nslookup -type=TXT {}".format(test_record)).read()
+    # print(nslookup_output)
 
-    #assert not record_target in nslookup_output
+    # assert not record_target in nslookup_output
