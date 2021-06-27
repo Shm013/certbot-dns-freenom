@@ -25,7 +25,23 @@ def test_perform():
     # Empty record
     authenticator.del_txt_record(domain, record_name, record_target, 300)
 
-    print(os.popen("nslookup -type=TXT {}".format(test_record)).read())
+    nslookup_output = os.popen("nslookup -type=TXT {}".format(test_record)).read()
+    print(nslookup_output)
+
+    assert not record_target in nslookup_output
 
     # Add new record
-    # authenticator.add_txt_record(domain, "_TEST_CERTBOT", target, 300)
+    authenticator.add_txt_record(domain, record_name, record_target, 300)
+
+    nslookup_output = os.popen("nslookup -type=TXT {}".format(test_record)).read()
+    print(nslookup_output)
+
+    assert not record_target in nslookup_output
+
+    # Clenup
+    authenticator.del_txt_record(domain, record_name, record_target, 300)
+
+    nslookup_output = os.popen("nslookup -type=TXT {}".format(test_record)).read()
+    print(nslookup_output)
+
+    assert not record_target in nslookup_output
