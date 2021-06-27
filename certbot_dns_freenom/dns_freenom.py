@@ -13,7 +13,7 @@
 #   limitations under the License.
 
 """DNS Authenticator for Freenom DNS."""
-from freenom_dns import Freenom
+from freenom import Freenom
 
 from certbot import interfaces
 from certbot.plugins import dns_common
