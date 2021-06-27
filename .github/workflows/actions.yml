@@ -41,4 +41,5 @@ jobs:
             --server https://acme-staging-v02.api.letsencrypt.org/directory \
             --logs-dir /tmp/ \
             --config-dir /tmp/ \
+            --work-dir /tmp/ \
             --agree-tos -n
