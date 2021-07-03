@@ -66,4 +66,3 @@ jobs:
           test -f ${PWD}/letsencrypt/live/\
           ${{ secrets.FREENOM_DOMAIN }}/fullchain.pem || \
           ( echo "Error - fullchain.pem not exists"; return 1 )
-
