@@ -61,7 +61,7 @@ jobs:
         --server https://acme-staging-v02.api.letsencrypt.org/directory \
         --agree-tos -n"
 
-      - name: Test cert file
+      - name: Test cert files
         run: |
           test -f ${PWD}/letsencrypt/live/\
           ${{ secrets.FREENOM_DOMAIN }}/fullchain.pem ||
