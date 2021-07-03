@@ -1,5 +1,6 @@
+---
 name: Python package
-on: 
+on:
   - push
 jobs:
   lint:
@@ -10,42 +11,21 @@ jobs:
       - name: Install linters
         run: |
           python -m pip install --upgrade pip
-          pip install flake8 flake8-black
+          pip install flake8 flake8-black yamllint
       - name: Lint with flake8
         run: |
           flake8 .
+      - name: Lint with yamllint
+        run: |
+          yamllint .
   build:
     needs: lint
     stepd:
-      - uses:
+      - uses: docker/build-push-action@v2
         name: Docker Build
-        uses: docker/build-push-action@v2
         with:
           context: .
           tags: shm013/certbot-dns-freenom:latest
           build-args:
             - ARCH: amd64
             - CERTBOT_VERSION: 1.16.0
-
-#      - name: Install certbot_dns_freenom
-#        run: |
-#          pip install .
-#      - name: Prepare
-#        run: |
-#          mkdir letsencrypt
-#          echo "certbot_dns_freenom:dns_freenom_username = ${{ secrets.FREENOM_USERNAME }}\n
-#          certbot_dns_freenom:dns_freenom_password = ${{ secrets.FREENOM_PASSWORD }}" > credentials.ini
-#          chmod 600 credentials.ini
-#      - name: Test
-#        run: |
-#          certbot certonly -a certbot-dns-freenom:dns-freenom \
-#            --certbot-dns-freenom:dns-freenom-credentials ${PWD}/credentials.ini \
-#            --certbot-dns-freenom:dns-freenom-propagation-seconds 300 \
-#            -d "*.certbot-dns-freenom-test.ml" \
-#            -d "certbot-dns-freenom-test.ml" \
-#            -m shm0x1101@gmail.com \
-#            --server https://acme-staging-v02.api.letsencrypt.org/directory \
-#            --logs-dir letsencrypt \
-#            --config-dir letsencrypt \
-#            --work-dir letsencrypt \
-#            --agree-tos -n
