@@ -47,13 +47,11 @@ jobs:
           ${{ secrets.FREENOM_PASSWORD }}" > credentials.ini
           chmod 600 credentials.ini
 
-      - name: Test
-        run: echo credentials.ini
-
-      - name: Test
+      - name: Perform test
         run: "docker run
         --pull never \
         -v ${PWD}/credentials.ini:/credentials.ini \
+        -v ${PWD}/letsencrypt:/etc/letsencrypt \
         shm013/certbot-dns-freenom:latest certonly \
         -a certbot-dns-freenom:dns-freenom \
         --certbot-dns-freenom:dns-freenom-credentials /credentials.ini \
@@ -61,7 +59,4 @@ jobs:
         -d '*.${{ secrets.FREENOM_DOMAIN }}' \
         -m ${{ secrets.FREENOM_USERNAME }} \
         --server https://acme-staging-v02.api.letsencrypt.org/directory \
-        --logs-dir letsencrypt \
-        --config-dir letsencrypt \
-        --work-dir letsencrypt \
         --agree-tos -n"
