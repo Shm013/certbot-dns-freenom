@@ -20,7 +20,7 @@ jobs:
           yamllint .
   build:
     needs: lint
-    stepd:
+    steps:
       - uses: docker/build-push-action@v2
         name: Docker Build
         with:
