@@ -61,3 +61,4 @@ pip-selfcheck.json
 freenom_data
 cookies_data
 credentials.ini
+letsencrypt
