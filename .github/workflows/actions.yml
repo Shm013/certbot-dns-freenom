@@ -42,9 +42,9 @@ jobs:
         run: |
           mkdir letsencrypt
           echo "certbot_dns_freenom:dns_freenom_username = \
-                ${{ secrets.FREENOM_USERNAME }}\n
-                certbot_dns_freenom:dns_freenom_password = \
-                ${{ secrets.FREENOM_PASSWORD }}" > credentials.ini
+          ${{ secrets.FREENOM_USERNAME }}\n
+          certbot_dns_freenom:dns_freenom_password = \
+          ${{ secrets.FREENOM_PASSWORD }}" > credentials.ini
           chmod 600 credentials.ini
 
       - name: Test
