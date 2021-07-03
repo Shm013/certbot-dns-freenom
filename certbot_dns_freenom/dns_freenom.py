@@ -46,10 +46,8 @@ class Authenticator(dns_common.DNSAuthenticator):
         add("credentials", help="Freenom DNS API credentials file.")
 
     def more_info(self):  # pylint: disable=missing-docstring,no-self-use
-        return (
-            "This plugin configures a DNS TXT record to respond to a dns-01 challenge using "
-            + "the Freenom DNS API."
-        )
+        return "This plugin configures a DNS TXT record to respond to a \
+                dns-01 challenge using the Freenom DNS API."
 
     def _setup_credentials(self):
         self.credentials = self._configure_credentials(
