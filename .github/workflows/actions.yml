@@ -24,13 +24,37 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
-      - uses: docker/build-push-action@v2
-        name: Docker Build
+
+      - name: Docker Build
+        uses: docker/build-push-action@v2
         with:
           context: .
           tags: shm013/certbot-dns-freenom:latest
           build-args: |
             ARCH=amd64
             CERTBOT_VERSION=1.16.0
+
+      - name: Prepare test
+        run: |
+          mkdir letsencrypt
+          echo "certbot_dns_freenom:dns_freenom_username = ${{ secrets.FREENOM_USERNAME }}\n
+          certbot_dns_freenom:dns_freenom_password = ${{ secrets.FREENOM_PASSWORD }}" > credentials.ini
+          chmod 600 credentials.ini
+
+      - name: Test
+        run: "docker run
+        -v ${PWD}/credentials.ini:/credentials.ini \
+        shm013/certbot-dns-freenom:latest certonly \
+        -a certbot-dns-freenom:dns-freenom \
+        --certbot-dns-freenom:dns-freenom-credentials /credentials.ini \
+        --certbot-dns-freenom:dns-freenom-propagation-seconds 300 \
+        -d '*.${{ secrets.FREENOM_DOMAIN }}' \
+        -m ${{ secrets.FREENOM_USERNAME }} \
+        --server https://acme-staging-v02.api.letsencrypt.org/directory \
+        --logs-dir letsencrypt \
+        --config-dir letsencrypt \
+        --work-dir letsencrypt \
+        --agree-tos -n"
