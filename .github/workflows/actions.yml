@@ -38,7 +38,7 @@ jobs:
             ARCH=amd64
             CERTBOT_VERSION=1.16.0
 
-      - name: Prepare test
+      - name: Prepare Test
         run: |
           mkdir letsencrypt
           echo "certbot_dns_freenom:dns_freenom_username = \
@@ -47,7 +47,7 @@ jobs:
           ${{ secrets.FREENOM_PASSWORD }}" > credentials.ini
           chmod 600 credentials.ini
 
-      - name: Perform test
+      - name: Perform Test
         run: "docker run
         --pull never \
         -v ${PWD}/credentials.ini:/credentials.ini \
