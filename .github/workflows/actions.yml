@@ -31,4 +31,4 @@ jobs:
         with:
           context: .
           tags: shm013/certbot-dns-freenom:latest
-          build-args: "ARCH=amd64,CERTBOT_VERSION=1.16.0"
+          build-args: ARCH=amd64,CERTBOT_VERSION=1.16.0"
