@@ -18,10 +18,7 @@ from setuptools import find_packages
 
 version = "1.4.0.dev0"
 
-install_requires = [
-    "freenom>=0.0.2",
-    "zope.interface"
-]
+install_requires = ["freenom>=0.0.2", "zope.interface"]
 
 setup(
     name="certbot-dns-freenom",
