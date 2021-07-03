@@ -33,6 +33,7 @@ jobs:
         with:
           context: .
           tags: shm013/certbot-dns-freenom:latest
+          load: true
           build-args: |
             ARCH=amd64
             CERTBOT_VERSION=1.16.0
@@ -48,6 +49,7 @@ jobs:
 
       - name: Test
         run: "docker run
+        --pull never \
         -v ${PWD}/credentials.ini:/credentials.ini \
         shm013/certbot-dns-freenom:latest certonly \
         -a certbot-dns-freenom:dns-freenom \
