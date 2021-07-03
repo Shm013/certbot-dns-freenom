@@ -14,6 +14,19 @@ jobs:
       - name: Lint with flake8
         run: |
           flake8 .
+  build:
+    needs: lint
+    stepd:
+      - uses:
+        name: Docker Build
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          tags: shm013/certbot-dns-freenom:latest
+          build-args:
+            - ARCH: amd64
+            - CERTBOT_VERSION: 1.16.0
+
 #      - name: Install certbot_dns_freenom
 #        run: |
 #          pip install .
