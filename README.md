@@ -53,7 +53,7 @@ docker run \
     --certbot-dns-freenom:dns-freenom-propagation-seconds 300 \
     -d '*.example.com' \
     -m 'admin@example.com' \
-    --agree-tos -n"
+    --agree-tos -n
 ```
 
 # Possible problems
