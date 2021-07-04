@@ -28,6 +28,10 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
 
+      - name: Test
+        run: |
+          sudo whoami
+
       - name: Docker Build
         uses: docker/build-push-action@v2
         with:
@@ -40,7 +44,6 @@ jobs:
 
       - name: Prepare Test
         run: |
-          mkdir letsencrypt
           echo "certbot_dns_freenom:dns_freenom_username = \
           ${{ secrets.FREENOM_USERNAME }}
           certbot_dns_freenom:dns_freenom_password = \
@@ -51,24 +54,27 @@ jobs:
         run: "docker run
         --pull never \
         -v ${PWD}/credentials.ini:/credentials.ini \
-        -v ${PWD}/letsencrypt:/etc/letsencrypt \
-        shm013/certbot-dns-freenom:latest certonly \
+        -v /etc/letsencrypt:/etc/letsencrypt \
+        -v /var/lib/letsencrypt:/var/lib/letsencrypt \
+        -v /var/log/letsencrypt:/var/log/letsencrypt \
+        shm013/certbot-dns-freenom:latest \
+        certonly \
         -a certbot-dns-freenom:dns-freenom \
         --certbot-dns-freenom:dns-freenom-credentials /credentials.ini \
         --certbot-dns-freenom:dns-freenom-propagation-seconds 300 \
         -d '*.${{ secrets.FREENOM_DOMAIN }}' \
         -m ${{ secrets.FREENOM_USERNAME }} \
         --server https://acme-staging-v02.api.letsencrypt.org/directory \
-        --agree-tos -n"
+        --agree-tos \
+        -n"
 
       - name: Test
         run: |
-          ls ${PWD}/letsencrypt/live/
-          ls ${PWD}/letsencrypt/live/\
-          ${{ secrets.FREENOM_DOMAIN }}
+          sudo ls /etc/letsencrypt/live/
+          sudo ls /etc/letsencrypt/live/${{ secrets.FREENOM_DOMAIN }}
 
       - name: Test cert files
         run: |
-          test -f ${PWD}/letsencrypt/live/\
+          sudo test -f /etc/letsencrypt/live/\
           ${{ secrets.FREENOM_DOMAIN }}/fullchain.pem || \
           ( echo "Error - fullchain.pem not exists"; return 1 )
