@@ -28,10 +28,6 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
 
-      - name: Test
-        run: |
-          sudo whoami
-
       - name: Docker Build
         uses: docker/build-push-action@v2
         with:
@@ -67,11 +63,6 @@ jobs:
         --server https://acme-staging-v02.api.letsencrypt.org/directory \
         --agree-tos \
         -n"
-
-      - name: Test
-        run: |
-          sudo ls /etc/letsencrypt/live/
-          sudo ls /etc/letsencrypt/live/${{ secrets.FREENOM_DOMAIN }}
 
       - name: Test cert files
         run: |
