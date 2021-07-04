@@ -1,4 +1,5 @@
-[![PyPI version](https://badge.fury.io/py/certbot-dns-freenom.svg)](https://badge.fury.io/py/certbot-dns-freenom)
+![PyPI version](https://badge.fury.io/py/certbot-dns-freenom.svg)
+![workflow](https://github.com/shm013/certbot-dns-freenom/actions/workflows/ci.yml/badge.svg)
 
 freenom DNS Authenticator plugin for Certbot
 ==============================================
