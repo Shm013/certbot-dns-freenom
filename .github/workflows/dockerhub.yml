@@ -5,6 +5,8 @@ on:
   push:
     branches:
       - master
+    tags:
+      - 'v*.*.*'
 
 jobs:
   docker:
@@ -13,8 +15,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v3
+        with:
+          images: shm013/certbot-dns-freenom
+          tags: |
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
 
       - name: Login to DockerHub
         uses: docker/login-action@v1
@@ -28,7 +36,7 @@ jobs:
         with:
           push: true
           context: .
-          tags: shm013/certbot-dns-freenom:latest
+          tags: ${{ steps.meta.outputs.tags }}
           build-args: |
             ARCH=amd64
             CERTBOT_VERSION=1.16.0
