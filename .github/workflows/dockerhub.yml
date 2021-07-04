@@ -21,8 +21,8 @@ jobs:
         with:
           images: shm013/certbot-dns-freenom
           tags: |
-            type=semver,pattern={{version}}
-            type=semver,pattern={{major}}.{{minor}}
+            type=semver,pattern=v{{version}}
+            type=semver,pattern=v{{major}}.{{minor}}
             latest
 
       - name: Login to DockerHub
