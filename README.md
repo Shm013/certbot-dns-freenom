@@ -26,7 +26,7 @@ Change domain, email and path/to/credential.ini file to your owns.
 ## Using pip
 
 ```
-pip install certbot-dns-freenom
+pip install certbot certbot-dns-freenom
 ```
 
 ```bash
