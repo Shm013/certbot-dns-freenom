@@ -10,8 +10,8 @@ A certbot dns plugin to obtain certificates using Freenom DNS.
 
 credentials.ini
 ```ini
-certbot_dns_freenom:dns_freenom_username = username
-certbot_dns_freenom:dns_freenom_password = password
+dns_freenom_username = username
+dns_freenom_password = password
 ```
 
 ```bash
@@ -31,8 +31,8 @@ pip install certbot certbot-dns-freenom
 
 ```bash
 certbot certonly -a certbot-dns-freenom:dns-freenom \
-  --certbot-dns-freenom:dns-freenom-credentials /path/to/credentials.ini \
-  --certbot-dns-freenom:dns-freenom-propagation-seconds 300 \
+  --dns-freenom-credentials /path/to/credentials.ini \
+  --dns-freenom-propagation-seconds 300 \
   -d "*.example.com" \
   -m admin@example.com \
   --agree-tos -n
@@ -49,8 +49,8 @@ docker run \
     shm013/certbot-dns-freenom:latest \
     certonly \
     -a certbot-dns-freenom:dns-freenom \
-    --certbot-dns-freenom:dns-freenom-credentials /credentials.ini \
-    --certbot-dns-freenom:dns-freenom-propagation-seconds 300 \
+    --dns-freenom-credentials /credentials.ini \
+    --dns-freenom-propagation-seconds 300 \
     -d '*.example.com' \
     -m 'admin@example.com' \
     --agree-tos -n
