@@ -53,7 +53,7 @@ jobs:
         -v /var/log/letsencrypt:/var/log/letsencrypt \
         shm013/certbot-dns-freenom:latest \
         certonly \
-        -a certbot-dns-freenom:dns-freenom \
+        -a dns-freenom \
         --dns-freenom-credentials /credentials.ini \
         --dns-freenom-propagation-seconds 300 \
         -d '*.${{ secrets.FREENOM_DOMAIN }}' \

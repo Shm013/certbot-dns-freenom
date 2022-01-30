@@ -30,7 +30,7 @@ pip install certbot certbot-dns-freenom
 ```
 
 ```bash
-certbot certonly -a certbot-dns-freenom:dns-freenom \
+certbot certonly -a dns-freenom \
   --dns-freenom-credentials /path/to/credentials.ini \
   --dns-freenom-propagation-seconds 300 \
   -d "*.example.com" \
@@ -48,7 +48,7 @@ docker run \
     -v /var/log/letsencrypt:/var/log/letsencrypt \
     shm013/certbot-dns-freenom:latest \
     certonly \
-    -a certbot-dns-freenom:dns-freenom \
+    -a dns-freenom \
     --dns-freenom-credentials /credentials.ini \
     --dns-freenom-propagation-seconds 300 \
     -d '*.example.com' \
