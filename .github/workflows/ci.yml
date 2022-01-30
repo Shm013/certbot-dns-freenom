@@ -35,7 +35,7 @@ jobs:
           load: true
           build-args: |
             ARCH=amd64
-            CERTBOT_VERSION=1.16.0
+            CERTBOT_VERSION=1.22.0
 
       - name: Prepare Test
         run: |

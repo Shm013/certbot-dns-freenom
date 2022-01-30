@@ -48,7 +48,7 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           build-args: |
             ARCH=amd64
-            CERTBOT_VERSION=1.17.0
+            CERTBOT_VERSION=1.22.0
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
