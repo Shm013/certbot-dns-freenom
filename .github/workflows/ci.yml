@@ -39,10 +39,8 @@ jobs:
 
       - name: Prepare Test
         run: |
-          echo "certbot_dns_freenom:dns_freenom_username = \
-          ${{ secrets.FREENOM_USERNAME }}
-          certbot_dns_freenom:dns_freenom_password = \
-          ${{ secrets.FREENOM_PASSWORD }}" > credentials.ini
+          echo "dns_freenom_username = ${{ secrets.FREENOM_USERNAME }}
+          dns_freenom_password = ${{ secrets.FREENOM_PASSWORD }}" > credentials.ini
           chmod 600 credentials.ini
 
       - name: Perform Test
@@ -55,8 +53,8 @@ jobs:
         shm013/certbot-dns-freenom:latest \
         certonly \
         -a certbot-dns-freenom:dns-freenom \
-        --certbot-dns-freenom:dns-freenom-credentials /credentials.ini \
-        --certbot-dns-freenom:dns-freenom-propagation-seconds 300 \
+        --dns-freenom-credentials /credentials.ini \
+        --dns-freenom-propagation-seconds 300 \
         -d '*.${{ secrets.FREENOM_DOMAIN }}' \
         -m ${{ secrets.FREENOM_USERNAME }} \
         --server https://acme-staging-v02.api.letsencrypt.org/directory \
