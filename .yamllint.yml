@@ -1,0 +1,51 @@
+---
+extends: default
+
+ignore: venv/
+
+rules:
+  braces:
+    min-spaces-inside: 1
+    max-spaces-inside: 1
+    min-spaces-inside-empty: 0
+    max-spaces-inside-empty: 0
+    level: error
+  brackets:
+    min-spaces-inside: 1
+    max-spaces-inside: 1
+    min-spaces-inside-empty: 0
+    max-spaces-inside-empty: 0
+    level: error
+  colons:
+    level: error
+  commas:
+    level: error
+  comments:
+    min-spaces-from-content: 1
+    level: error
+  comments-indentation:
+    level: error
+  document-start:
+    level: error
+  empty-lines:
+    level: error
+  empty-values:
+    forbid-in-block-mappings: true
+    forbid-in-flow-mappings: true
+  line-length:
+    level: error
+  hyphens:
+    level: error
+  indentation:
+    spaces: 2
+    indent-sequences: true
+    check-multi-line-strings: false
+    level: error
+  key-duplicates:
+    level: error
+  quoted-strings:
+    quote-type: double
+    required: false
+  new-lines:
+    type: unix
+  truthy: false
