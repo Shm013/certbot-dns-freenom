@@ -63,7 +63,7 @@ jobs:
 
       - name: Check - subdomain
         run: |
-          sudo test -f /etc/letsencrypt/live/\
+          test -f /etc/letsencrypt/live/\
           subdomain.${{ secrets.FREENOM_DOMAIN }}/fullchain.pem || \
           ( echo "Error - fullchain.pem not exists"; return 1 )
 
@@ -88,6 +88,6 @@ jobs:
 
       - name: Check - wildcard with domain
         run: |
-          sudo test -f /etc/letsencrypt/live/\
+          test -f /etc/letsencrypt/live/\
           ${{ secrets.FREENOM_DOMAIN }}/fullchain.pem || \
           ( echo "Error - fullchain.pem not exists"; return 1 )
