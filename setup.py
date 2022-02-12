@@ -16,7 +16,7 @@ from setuptools import setup
 from setuptools import find_packages
 
 
-version = "1.3.5"
+version = "1.22.0"
 
 install_requires = ["freenom>=0.0.2", "zope.interface"]
 

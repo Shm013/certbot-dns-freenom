@@ -1,9 +1,8 @@
 ---
-name: ci
-on:
-  push:
-    branches-ignore:
-      - master
+name: end-to-end
+on:  # yamllint disable-line rule:truthy
+  pull_request: {}
+
 jobs:
   lint:
     runs-on: ubuntu-latest
@@ -35,7 +34,7 @@ jobs:
           load: true
           build-args: |
             ARCH=amd64
-            CERTBOT_VERSION=1.16.0
+            CERTBOT_VERSION=1.22.0
 
       - name: Prepare Test
         run: |
@@ -44,7 +43,7 @@ jobs:
           credentials.ini
           chmod 600 credentials.ini
 
-      - name: Perform Test
+      - name: Perform Test - subdomain
         run: "docker run
         --pull never \
         -v ${PWD}/credentials.ini:/credentials.ini \
@@ -56,13 +55,38 @@ jobs:
         -a dns-freenom \
         --dns-freenom-credentials /credentials.ini \
         --dns-freenom-propagation-seconds 300 \
+        -d 'subdomain.${{ secrets.FREENOM_DOMAIN }}' \
+        -m ${{ secrets.FREENOM_USERNAME }} \
+        --server https://acme-staging-v02.api.letsencrypt.org/directory \
+        --agree-tos \
+        -n"
+
+      - name: Check - subdomain
+        run: |
+          sudo test -f /etc/letsencrypt/live/\
+          subdomain.${{ secrets.FREENOM_DOMAIN }}/fullchain.pem || \
+          ( echo "Error - fullchain.pem not exists"; return 1 )
+
+      - name: Perform Test - wildcard with domain
+        run: "docker run
+        --pull never \
+        -v ${PWD}/credentials.ini:/credentials.ini \
+        -v /etc/letsencrypt:/etc/letsencrypt \
+        -v /var/lib/letsencrypt:/var/lib/letsencrypt \
+        -v /var/log/letsencrypt:/var/log/letsencrypt \
+        shm013/certbot-dns-freenom:latest \
+        certonly \
+        -a dns-freenom \
+        --dns-freenom-credentials /credentials.ini \
+        --dns-freenom-propagation-seconds 300 \
+        -d '${{ secrets.FREENOM_DOMAIN }}' \
         -d '*.${{ secrets.FREENOM_DOMAIN }}' \
         -m ${{ secrets.FREENOM_USERNAME }} \
         --server https://acme-staging-v02.api.letsencrypt.org/directory \
         --agree-tos \
         -n"
 
-      - name: Test cert files
+      - name: Check - wildcard with domain
         run: |
           sudo test -f /etc/letsencrypt/live/\
           ${{ secrets.FREENOM_DOMAIN }}/fullchain.pem || \
