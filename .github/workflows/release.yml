@@ -22,6 +22,11 @@ jobs:
       - name: Version  
         id: version  
         uses: juliansangillo/tag-version@v1
+        with:
+          production-branch: master
 
       - name: Test
         run: echo ${{ steps.version.revision }}
+
+      - name: Test 2
+        run: echo $(python setup.py --version)
