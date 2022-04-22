@@ -75,7 +75,7 @@ class Authenticator(dns_common.DNSAuthenticator):
         )
 
 
-class _FreenomDNSClient:
+class _FreenomDNSClient():
     """
     Encapsulates all communication with the Freenom API.
     """
@@ -84,9 +84,18 @@ class _FreenomDNSClient:
         self.freenom = Freenom(username, password)
 
     def add_txt_record(self, domain, record_name, record_content, record_ttl):
-        """Add txt record"""
-        self.freenom.setRecord(domain, record_name, "TXT", record_content, record_ttl)
+        """ Add txt record """
+        if domain.count('.') > 1:
+            print ("Subdomain is used")
+            domain_list=domain.split('.')
+            domain = ".".join(domain_list[-2:])
+        print ("Add record: ",domain, record_name,record_content)
+        self.freenom.setRecord(domain, record_name, 'TXT', record_content, record_ttl)
 
     def del_txt_record(self, domain, record_name, record_content, record_ttl):
-        """Delete txt record"""
-        self.freenom.delRecord(domain, record_name, "TXT", record_content, record_ttl)
+        """ Delete txt record """
+        if domain.count('.') > 1:
+            domain_list=domain.split('.')
+            domain = ".".join(domain_list[-2:])
+        print ("Delete record: ",domain, record_name,record_content)
+        self.freenom.delRecord(domain, record_name, 'TXT', record_content, record_ttl)
