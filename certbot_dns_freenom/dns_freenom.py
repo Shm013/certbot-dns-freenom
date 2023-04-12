@@ -92,11 +92,11 @@ class _FreenomDNSClient():
         self.freenom = Freenom(username, password, timeout=timeout)
 
     def add_txt_record(self, domain, record_name, record_content, record_ttl):
-        """ Add txt record """
+        """Add txt record"""
         print ("Add record: ", domain, record_name, record_content)
         self.freenom.setRecord(domain, record_name, 'TXT', record_content, record_ttl)
 
     def del_txt_record(self, domain, record_name, record_content, record_ttl):
-        """ Delete txt record """
+        """Delete txt record"""
         print ("Delete record: ",domain, record_name,record_content)
         self.freenom.delRecord(domain, record_name, 'TXT', record_content, record_ttl)
