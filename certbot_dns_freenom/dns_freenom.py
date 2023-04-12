@@ -45,7 +45,7 @@ class Authenticator(dns_common.DNSAuthenticator):
     def add_parser_arguments(cls, add):  # pylint: disable=arguments-differ
         super(Authenticator, cls).add_parser_arguments(add)
         add("credentials", help="Freenom DNS API credentials file.")
-        add("timeout", help="Freenom API request timeout.")
+        add("timeout", type=int, help="Freenom API request timeout.")
 
     def more_info(self):  # pylint: disable=missing-docstring,no-self-use
         return "This plugin configures a DNS TXT record to respond to a \
