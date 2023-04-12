@@ -93,8 +93,8 @@ class _FreenomDNSClient():
 
     def add_txt_record(self, domain, record_name, record_content, record_ttl):
         """Add txt record"""
-        self.freenom.setRecord(domain, record_name, 'TXT', record_content, record_ttl)
+        self.freenom.setRecord(domain, record_name, "TXT", record_content, record_ttl)
 
     def del_txt_record(self, domain, record_name, record_content, record_ttl):
         """Delete txt record"""
-        self.freenom.delRecord(domain, record_name, 'TXT', record_content, record_ttl)
+        self.freenom.delRecord(domain, record_name, "TXT", record_content, record_ttl)
