@@ -63,17 +63,17 @@ class Authenticator(dns_common.DNSAuthenticator):
 
     def _perform(self, domain, validation_name, validation):
         self._get_freenom_client().add_txt_record(
-            domain, validation_name, validation, self.ttl, self.timeout
+            domain, validation_name, validation, self.ttl
         )
 
     def _cleanup(self, domain, validation_name, validation):
         self._get_freenom_client().del_txt_record(
-            domain, validation_name, validation, self.ttl, self.timeout
+            domain, validation_name, validation, self.ttl
         )
 
     def _get_freenom_client(self):
         return _FreenomDNSClient(
-            self.credentials.conf("username"), self.credentials.conf("password")
+            self.credentials.conf("username"), self.credentials.conf("password"), self.timeout
         )
 
 
@@ -82,22 +82,22 @@ class _FreenomDNSClient():
     Encapsulates all communication with the Freenom API.
     """
 
-    def __init__(self, username, password):
-        self.freenom = Freenom(username, password)
+    def __init__(self, username, password, timeout):
+        self.freenom = Freenom(username, password, timeout=timeout)
 
-    def add_txt_record(self, domain, record_name, record_content, record_ttl, record_timeout):
+    def add_txt_record(self, domain, record_name, record_content, record_ttl):
         """ Add txt record """
         if domain.count('.') > 1:
             print ("Subdomain is used")
             domain_list=domain.split('.')
             domain = ".".join(domain_list[-2:])
         print ("Add record: ",domain, record_name,record_content)
-        self.freenom.setRecord(domain, record_name, 'TXT', record_content, record_ttl, timeout=record_timeout)
+        self.freenom.setRecord(domain, record_name, 'TXT', record_content, record_ttl)
 
-    def del_txt_record(self, domain, record_name, record_content, record_ttl, record_timeout):
+    def del_txt_record(self, domain, record_name, record_content, record_ttl):
         """ Delete txt record """
         if domain.count('.') > 1:
             domain_list=domain.split('.')
             domain = ".".join(domain_list[-2:])
         print ("Delete record: ",domain, record_name,record_content)
-        self.freenom.delRecord(domain, record_name, 'TXT', record_content, record_ttl, timeout=record_timeout)
+        self.freenom.delRecord(domain, record_name, 'TXT', record_content, record_ttl)
