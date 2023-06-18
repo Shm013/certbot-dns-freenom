@@ -81,7 +81,7 @@ class Authenticator(dns_common.DNSAuthenticator):
         return _FreenomDNSClient(
             self.credentials.conf("username"),
             self.credentials.conf("password"),
-            self.conf("timeout")
+            self.conf("timeout"),
         )
 
 
