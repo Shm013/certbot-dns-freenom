@@ -44,6 +44,7 @@ class Authenticator(dns_common.DNSAuthenticator):
     def add_parser_arguments(cls, add):  # pylint: disable=arguments-differ
         super(Authenticator, cls).add_parser_arguments(add)
         add("credentials", help="Freenom DNS API credentials file.")
+        add("timeout", type=int, help="Freenom API request timeout.", default=30)
 
     def more_info(self):  # pylint: disable=missing-docstring,no-self-use
         return "This plugin configures a DNS TXT record to respond to a \
@@ -59,19 +60,28 @@ class Authenticator(dns_common.DNSAuthenticator):
             },
         )
 
+    def remove_subdomain(self, domain):
+        if domain.count(".") > 1:
+            domain_list = domain.split(".")
+            return ".".join(domain_list[-2:])
+        else:
+            return domain
+
     def _perform(self, domain, validation_name, validation):
         self._get_freenom_client().add_txt_record(
-            domain, validation_name, validation, self.ttl
+            self.remove_subdomain(domain), validation_name, validation, self.ttl
         )
 
     def _cleanup(self, domain, validation_name, validation):
         self._get_freenom_client().del_txt_record(
-            domain, validation_name, validation, self.ttl
+            self.remove_subdomain(domain), validation_name, validation, self.ttl
         )
 
     def _get_freenom_client(self):
         return _FreenomDNSClient(
-            self.credentials.conf("username"), self.credentials.conf("password")
+            self.credentials.conf("username"),
+            self.credentials.conf("password"),
+            self.conf("timeout"),
         )
 
 
@@ -80,8 +90,8 @@ class _FreenomDNSClient:
     Encapsulates all communication with the Freenom API.
     """
 
-    def __init__(self, username, password):
-        self.freenom = Freenom(username, password)
+    def __init__(self, username, password, timeout):
+        self.freenom = Freenom(username, password, timeout=timeout)
 
     def add_txt_record(self, domain, record_name, record_content, record_ttl):
         """Add txt record"""
