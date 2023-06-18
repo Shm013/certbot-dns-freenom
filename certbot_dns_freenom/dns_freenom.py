@@ -85,7 +85,7 @@ class Authenticator(dns_common.DNSAuthenticator):
         )
 
 
-class _FreenomDNSClient():
+class _FreenomDNSClient:
     """
     Encapsulates all communication with the Freenom API.
     """
