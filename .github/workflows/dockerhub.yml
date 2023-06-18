@@ -7,7 +7,7 @@ on:  # yamllint disable-line rule:truthy
       - master
     tags:
       - "v*.*.*"
-  workflow_dispatch:
+  workflow_dispatch: {}
 
 jobs:
   docker:
