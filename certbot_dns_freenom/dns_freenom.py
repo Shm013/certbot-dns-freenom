@@ -61,8 +61,8 @@ class Authenticator(dns_common.DNSAuthenticator):
         )
 
     def remove_subdomain(self, domain):
-        if domain.count('.') > 1:
-            domain_list = domain.split('.')
+        if domain.count(".") > 1:
+            domain_list = domain.split(".")
             return ".".join(domain_list[-2:])
         else:
             return domain
