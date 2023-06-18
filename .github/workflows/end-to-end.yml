@@ -31,7 +31,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
-          tags: shm013/certbot-dns-freenom:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/certbot-dns-freenom:latest
           load: true
           build-args: |
             ARCH=amd64
@@ -51,7 +51,7 @@ jobs:
         -v /etc/letsencrypt:/etc/letsencrypt \
         -v /var/lib/letsencrypt:/var/lib/letsencrypt \
         -v /var/log/letsencrypt:/var/log/letsencrypt \
-        shm013/certbot-dns-freenom:latest \
+        ${{ secrets.DOCKERHUB_USERNAME }}/certbot-dns-freenom:latest \
         certonly \
         -a dns-freenom \
         --dns-freenom-credentials /credentials.ini \
@@ -75,7 +75,7 @@ jobs:
         -v /etc/letsencrypt:/etc/letsencrypt \
         -v /var/lib/letsencrypt:/var/lib/letsencrypt \
         -v /var/log/letsencrypt:/var/log/letsencrypt \
-        shm013/certbot-dns-freenom:latest \
+        ${{ secrets.DOCKERHUB_USERNAME }}/certbot-dns-freenom:latest \
         certonly \
         -a dns-freenom \
         --dns-freenom-credentials /credentials.ini \
