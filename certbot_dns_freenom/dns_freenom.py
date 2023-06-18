@@ -44,7 +44,7 @@ class Authenticator(dns_common.DNSAuthenticator):
     def add_parser_arguments(cls, add):  # pylint: disable=arguments-differ
         super(Authenticator, cls).add_parser_arguments(add)
         add("credentials", help="Freenom DNS API credentials file.")
-        add("timeout", type=int, help="Freenom API request timeout.", default = 30)
+        add("timeout", type=int, help="Freenom API request timeout.", default=30)
 
     def more_info(self):  # pylint: disable=missing-docstring,no-self-use
         return "This plugin configures a DNS TXT record to respond to a \
@@ -59,10 +59,10 @@ class Authenticator(dns_common.DNSAuthenticator):
                 "password": "Your password for Freenom",
             },
         )
- 
+
     def remove_subdomain(self, domain):
         if domain.count('.') > 1:
-            domain_list=domain.split('.')
+            domain_list = domain.split('.')
             return ".".join(domain_list[-2:])
         else:
             return domain
@@ -79,7 +79,9 @@ class Authenticator(dns_common.DNSAuthenticator):
 
     def _get_freenom_client(self):
         return _FreenomDNSClient(
-            self.credentials.conf("username"), self.credentials.conf("password"), self.conf("timeout")
+            self.credentials.conf("username"),
+			self.credentials.conf("password"),
+			self.conf("timeout")
         )
 
 
